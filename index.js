@@ -32,11 +32,15 @@ let promptOptions = [{
 }];
 
 prompt.get(promptOptions, (err, res) => {
-    getData(res.country)
+    getData(res.country);
 });
 
 async function getData(country) {
     const res = await fetch(filterCountry(country));
     const data = await res.json();
-    console.log(data)
+    console.log('\n')
+    for (const key in data) {
+        console.log('\x1b[33m%s\x1b[0m', `${key}: ${data[key]}`,);
+    }
+    console.log('\n')
 }
